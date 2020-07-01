@@ -44,6 +44,19 @@ class ArtistsController < ApplicationController
     redirect_to artists_path
   end
 
+  def songs_index
+    @artist = Artist.find_by(id: params[:id])
+    @songs = @artist.songs
+    render template: 'songs/index'
+  end
+
+  def song
+    @artist = Artist.find_by(id: params[:id])
+
+    @song = Song.find_by(id: params[:song_id])
+    render template: 'songs/show'
+  end
+
   private
 
   def artist_params
